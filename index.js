@@ -255,7 +255,7 @@ function resetFieldComputationRayPeriod()
 function resetFieldComputationCommonPeriod()
 {
 	if(!shouldRotateFigure())
-		alert("Figura się obracać");
+		alert("Figura musi się obracać");
 	else
 	{
 		var rayVelocity = getRayAngularVelocity();
