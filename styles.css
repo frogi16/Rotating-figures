@@ -1,0 +1,87 @@
+input[type="button"]
+{
+	display:block;
+	margin-top: 2px;
+	margin-bottom: 2px;
+}
+
+#usePredefinedFigures input[type="button"]
+{
+	width: 100%;
+}
+
+#controls
+{
+	float: left;
+	width: 500px;
+}
+
+#usePredefinedFigures
+{
+	float: left;
+	width: 50%;
+}
+
+#generateRegularPolygon
+{
+	text-align: center;
+	line-height: 1.3;
+	padding: 5px;
+	float: left;
+	width: 48%;
+}
+
+#generateRegularPolygon input
+{
+    width: 100%;
+}
+
+#angleControls
+{
+	width: 48%;
+	text-align: right;
+	line-height: 1.6;
+}
+
+#angleControls input
+{
+	position: absolute;
+	left: 258px;
+	margin-left: 4px;
+	margin-right: 4px;
+	margin-top: 3px;
+}
+
+#angleControls input[type="checkbox"]
+{
+	margin-top: 7px;
+}
+
+#fieldComputationControls
+{
+	line-height: 1.3;
+	padding-top: 3px;
+	margin-left: 50px;
+	float: left;
+	text-align: center;
+}
+
+#fieldComputationControls input[type="button"]
+{
+    width: 100%;
+	display:block;
+}
+
+#fieldComputationVal
+{
+	float: left;
+	padding: 3px;
+	width: 170px;
+	margin-left: 5px;
+}
+
+#canvasDiv
+{
+	position: absolute;
+	top: 220px;
+}
