@@ -5,37 +5,42 @@
 		<title>Proj 1</title>
 	</head>
 	<body>
-		<div id = "all">
-			<div id = "controls">
-				<div id = "usePredefinedFigures">
-					<input type="button" value="Trójkąt prostokątny" onclick="changeFigureToRightTriangle();" />
-					<input type="button" value="Strzałka" onclick="changeFigureToArrow();" />
-					<input type="button" value="Pik" onclick="changeFigureToSpear();" />
+		<article>
+			<header>
+				<h2>Rzut punktu przecięcia obrotowego promienia i wielokąta na oś Y</h2>
+			</header>
+			<div id = "all">
+				<div id = "controls">
+					<div id = "usePredefinedFigures">
+						<input type="button" value="Trójkąt prostokątny" onclick="changeFigureToRightTriangle();" />
+						<input type="button" value="Strzałka" onclick="changeFigureToArrow();" />
+						<input type="button" value="Pik" onclick="changeFigureToSpear();" />
+					</div>
+					<div id = "generateRegularPolygon">
+						<label>Ilość wierzchołków<br />
+							<input type = "number" name = "verticesNumber" id = "verticesNumber" />
+						</label>
+						<input type="button" value="Generuj n-kąt foremny" onclick="changeFigureToNewRegular();" />
+					</div>
+					<div id = "angleControls">
+						<label>Szybkość obrotu promienia [deg/s]<input type = "number" name = "rayVelocity" id = "rayVelocity" value="36" /></label><br />
+						<label>Stały obrót figury<input type = "number" name = "angle" id = "angle" value="0" /></label><br />
+						<label>Szybkość obrotu figury [deg/s]<input type = "number" name = "angleVelocity" id = "angleVelocity" value="0" /></label><br />
+					</div>
 				</div>
-				<div id = "generateRegularPolygon">
-					<label>Ilość wierzchołków<br />
-						<input type = "number" name = "verticesNumber" id = "verticesNumber" />
-					</label>
-					<input type="button" value="Generuj n-kąt foremny" onclick="changeFigureToNewRegular();" />
+				
+				<div id = "fieldComputationControls">
+					Zmierz pola pod krzywymi
+					<input type="button" value="Okres obiegu promienia" onclick="resetFieldComputationRayPeriod();" />
+					<input type="button" value="Wspólny okres promienia i figury" onclick="resetFieldComputationCommonPeriod();" />
 				</div>
-				<div id = "angleControls">
-					<label>Szybkość obrotu promienia [deg/s]<input type = "number" name = "rayVelocity" id = "rayVelocity" value="36" /></label><br />
-					<label>Stały obrót figury<input type = "number" name = "angle" id = "angle" value="0" /></label><br />
-					<label>Szybkość obrotu figury [deg/s]<input type = "number" name = "angleVelocity" id = "angleVelocity" value="0" /></label><br />
-				</div>
+				<div id = "fieldComputationVal"></div>
 			</div>
-			
-			<div id = "fieldComputationControls">
-				Zmierz pola pod krzywymi
-				<input type="button" value="Okres obiegu promienia" onclick="resetFieldComputationRayPeriod();" />
-				<input type="button" value="Wspólny okres promienia i figury" onclick="resetFieldComputationCommonPeriod();" />
+			<div id="canvasDiv">
+				<canvas width = '400' height = '400' id = "canvas" ></canvas>
+				<canvas width = '600' height = '400' id = "canvasScroll" ></canvas>
 			</div>
-			<div id = "fieldComputationVal"></div>
-		</div>
-		<div id="canvasDiv">
-			<canvas width = '600' height = '600' id = "canvas" ></canvas>
-			<canvas width = '800' height = '600' id = "canvasScroll" ></canvas>
-		</div>
-		<script src="index.js" type="text/javascript"></script>
+			<script src="index.js" type="text/javascript"></script>
+		</article>
 	</body>
 </html> 

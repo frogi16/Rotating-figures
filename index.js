@@ -36,9 +36,9 @@ var dt = 0.1;
 var translation = 80;
 var brushThickness = 1;
 
-var x0 = 300;
-var y0 = 300;
-var r = 200;
+var x0 = canvas.width / 2;
+var y0 = canvas.height / 2;
+var r = canvas.height * 0.40;
 var phi = 0;
 var yPrev = undefined;
 var yPrevS = undefined;
@@ -46,11 +46,11 @@ var yPrevS = undefined;
 var thetaVertices = 0;
 var thetaVerticesPrev = 0;
 
-var verticesRightTriangle = [ [-80, 200], [-80, -200], [140, -200] ];
+var verticesRightTriangle = [ [-60, 120], [-60, -120], [80, -120] ];
 var verticesArrow = [ [190, -30], [50, 0], [190, 30], [-200, -0] ];
-var verticesSpear = [ [90, 105], [95, 110], [100, 110], [130, 133], [140, 141], [150, 150], [141, 140], [133, 130], [110, 100], [110, 95], [105, 90], [-200, -200] ];
+var verticesSpear = [ [40, 55], [55, 70], [60, 70], [90, 93], [100, 101], [110, 110], [101, 100], [93, 90], [70, 60], [70, 55], [55, 40], [-110, -110] ];
 
-var verticesCircle = generateRegularFigure(32, 200);
+var verticesCircle = generateRegularFigure(32, r);
 var isRegularFigure = false;
 
 var chosenFigure = verticesRightTriangle;
@@ -388,8 +388,8 @@ function changeFigureToSpear()
 
 function changeFigureToNewRegular()
 {
-	var verticesNumber = document.getElementById('verticesNumber').value;
-	changeFigureTo(generateRegularFigure(verticesNumber, 200), true);
+	var verticesNumber = Math.round(parseFloat(document.getElementById('verticesNumber').value));
+	changeFigureTo(generateRegularFigure(verticesNumber, r), true);
 }
 
 function onEnterChangeFigure(event)

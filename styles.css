@@ -1,3 +1,9 @@
+article
+{
+	float: left;
+	display: block;
+}
+
 input[type="button"]
 {
 	display:block;
@@ -83,5 +89,5 @@ input[type="button"]
 #canvasDiv
 {
 	position: absolute;
-	top: 220px;
+	top: 240px;
 }
