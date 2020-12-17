@@ -5,42 +5,87 @@
 		<title>Proj 1</title>
 	</head>
 	<body>
-		<article>
-			<header>
-				<h2>Rzut punktu przecięcia obrotowego promienia i wielokąta na oś Y</h2>
-			</header>
-			<div id = "all">
+		<div id = "feed">
+			<article>
+				<header>
+					<h2>Rzut punktu przecięcia obrotowego promienia i wielokąta na oś Y</h2>
+				</header>
 				<div id = "controls">
-					<div id = "usePredefinedFigures">
-						<input type="button" value="Trójkąt prostokątny" onclick="changeFigureToRightTriangle();" />
-						<input type="button" value="Strzałka" onclick="changeFigureToArrow();" />
-						<input type="button" value="Pik" onclick="changeFigureToSpear();" />
+					<table>
+						<tr>
+							<td class="usePredefinedFigures"><input type="button" value="Trójkąt prostokątny" onclick="changeFigureToRightTriangle();" /></td>
+							<td class="generateRegularPolygon"><label>Ilość wierzchołków</label></td>
+							<td style="width:20px"></td>
+							<td><label>Szybkość obrotu promienia [deg/s]</label></td>
+							<td><input type = "number" name = "rayVelocity" id = "rayVelocity" value="36" /></td>
+						</tr>
+						<tr>
+							<td class="usePredefinedFigures"><input type="button" value="Strzałka" onclick="changeFigureToArrow();" /></td>
+							<td class="generateRegularPolygon"><input type = "number" name = "verticesNumber" id = "verticesNumber" /></td>
+							<td></td>
+							<td><label>Stały obrót figury</label></td>
+							<td><input type = "number" name = "angle" id = "angle" value="0" /></td>
+						</tr>
+						<tr>
+							<td class="usePredefinedFigures"><input type="button" value="Pik" onclick="changeFigureToSpear();" /></td>
+							<td class="generateRegularPolygon"><input type="button" value="Generuj n-kąt foremny" onclick="changeFigureToNewRegular();" /></td>
+							<td></td>
+							<td><label>Szybkość obrotu figury [deg/s]</label></td>
+							<td><input type = "number" name = "angleVelocity" id = "angleVelocity" value="0" /></td>
+						</tr>
+					</table>
+					<div id = "fieldComputationControls">
+						<table>
+							<tr><td>Zmierz pola pod krzywymi</td></tr>
+							<tr><td><input type="button" value="Okres obiegu promienia" onclick="resetFieldComputationRayPeriod();" /></td></tr>
+							<tr><td><input type="button" value="Wspólny okres promienia i figury" onclick="resetFieldComputationCommonPeriod();" /></td></tr>
+						</table>
 					</div>
-					<div id = "generateRegularPolygon">
-						<label>Ilość wierzchołków<br />
-							<input type = "number" name = "verticesNumber" id = "verticesNumber" />
-						</label>
-						<input type="button" value="Generuj n-kąt foremny" onclick="changeFigureToNewRegular();" />
-					</div>
-					<div id = "angleControls">
-						<label>Szybkość obrotu promienia [deg/s]<input type = "number" name = "rayVelocity" id = "rayVelocity" value="36" /></label><br />
-						<label>Stały obrót figury<input type = "number" name = "angle" id = "angle" value="0" /></label><br />
-						<label>Szybkość obrotu figury [deg/s]<input type = "number" name = "angleVelocity" id = "angleVelocity" value="0" /></label><br />
+					<div id = "fieldComputationVal">
 					</div>
 				</div>
-				
-				<div id = "fieldComputationControls">
-					Zmierz pola pod krzywymi
-					<input type="button" value="Okres obiegu promienia" onclick="resetFieldComputationRayPeriod();" />
-					<input type="button" value="Wspólny okres promienia i figury" onclick="resetFieldComputationCommonPeriod();" />
+				<div id="canvasDiv">
+					<canvas width = '400' height = '400' id = "canvas" ></canvas>
+					<canvas width = '600' height = '400' id = "canvasScroll" ></canvas>
 				</div>
-				<div id = "fieldComputationVal"></div>
-			</div>
-			<div id="canvasDiv">
-				<canvas width = '400' height = '400' id = "canvas" ></canvas>
-				<canvas width = '600' height = '400' id = "canvasScroll" ></canvas>
-			</div>
-			<script src="index.js" type="text/javascript"></script>
-		</article>
+				<script src="index.js" type="text/javascript"></script>
+			</article>
+			<article>
+				<header>
+					<h2>Wielokąty foremne a sinus</h2>
+				</header>
+					<p>
+						Rzut obracającego się promienia na oś Y w połączeniu z translacją tworzy wykresy funkcji okresowych. Szczególny przypadek występuje gdy promień obraca się wewnątrz okręgu, wtedy mamy do czynienia ze zwykłą sinusoidą (w przypadku rzut na poziomą oś byłaby to cosinusoida).
+					</p>
+					<p>
+						Dzięki temu o funkcji rysowanej w wyniku obrotu promienia wewnątrz figury, na której można opisać okrąg, można myśleć w kategorii interpolacji sinusa. Węzły interpolacji to punkty, gdzie figura pod względem rzutu na oś Y jest identyczna z okręgiem, a ich położenie określa stały obrót figury. Jego zmiana wpływa na wygląd wyjściowej funkcji i dokładność, z jaką odwzorowuje sinus.
+					</p>
+					<p>
+						Im więcej wierzchołków ma figura, tym więcej węzłów, które wymuszają wygląd podobny do koła. Wraz ze zbieganiem ku nieskończoności różnice między polami pod krzywymi się zacierają.
+					</p>
+			</article>
+			<article>
+				<header>
+					<h2>Obrót figury</h2>
+				</header>
+					<p>
+						Oprócz obrotu promienia można wprowadzić również ruch obrotowy samej figury, na którą się go rzutuje. Wprowadza to dodatkowe zaburzenia do wykresu, a ciekawe efekty można uzyskać z pewnymi specyficznymi wartościami szybkości obrotu.
+					</p>
+					<p>
+						Stosunek szybkości obrotu figury i promienia decyduje o kształcie krzywej i wspólnym okresie, który można wyliczyć z NWW i NWD. Gdy szybkości są takie same wydaje się, że różnica między sinusem a funkcją interpolującą powinna być stała, ale rzut odległości między punktami na obu figurach jest sinusoidalnie zmienny i powoduje pewne odchyły. Ustają one całkowicie, gdy szybkości zsynchronizuje się dokładnie w momencie, kiedy promień wskazuje na węzeł interpolacyjny - brak wtedy jakichkolwiek różnic między punktami, które mogłyby się zmieniać.
+					</p>
+			</article>
+			<article>
+				<header>
+					<h2>Pole pod sinusem</h2>
+				</header>
+					<p>
+						Okres uzyskanych funkcji wygodnie powiązać z kołem i przedstawić w postaci 2π. Na przestrzeni ćwiartki tego czasu pole pod krzywą sumuje się do 1, więc w całym okresie całka z wartości bezwzględnej funkcji powinna być równa 4.
+					</p>
+					<p>
+						W rzeczywistości obserwuje się niewielkie odchylenia nieodzowne przy obliczeniach numerycznych. Zastosowany algorytm nie jest zbyt skomplikowany  i używa prostego całkowania metodą prostokątów, co dodatkowo przyczynia się do błędu. 
+					</p>
+			</article>
+		</div>
 	</body>
 </html> 
