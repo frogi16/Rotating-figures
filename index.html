@@ -15,11 +15,22 @@
 				const offsetToFirstElem = -firstElement.getBoundingClientRect().top;
 				const headers = document.getElementsByTagName('header');
 				
+				function isScrolledIntoView(el)
+				{
+					var rect = el.getBoundingClientRect();
+					var elemTop = rect.top;
+					var elemBottom = rect.bottom;
+					
+					return ((elemTop >= 0) && (elemBottom <= window.innerHeight));
+				}
+				
 				function scrollToHeader(n)
 				{
-					const y = headers[n].getBoundingClientRect().top + window.pageYOffset + offsetToFirstElem;
-
-					window.scrollTo({top: y, behavior: 'smooth'});
+					if(!isScrolledIntoView(headers[n]) || !isScrolledIntoView(headers[n].nextElementSibling))
+					{
+						const y = headers[n].getBoundingClientRect().top + window.pageYOffset + offsetToFirstElem;
+						window.scrollTo({top: y, behavior: 'smooth'});
+					}
 				}
 				
 				document.addEventListener("DOMContentLoaded", function(){					
