@@ -28,8 +28,14 @@ function generateRegularFigure(numberOfVertices, r)
 var canvas = document.getElementById("canvas");
 var ctx = canvas.getContext("2d");
 
+canvas.width  = window.innerWidth * 0.2;
+canvas.height = canvas.width;
+  
 var canvasScroll = document.getElementById("canvasScroll");
 var ctxScroll = canvasScroll.getContext("2d");
+
+canvasScroll.width  = window.innerWidth * 0.25;
+canvasScroll.height = canvas.height;
 
 var t = 0;
 var dt = 0.1;

@@ -74,6 +74,7 @@ article
 
 article.card .content
 {
+	overflow: auto;
 	padding: 50px 30px 30px 30px;
 }
 
@@ -127,9 +128,11 @@ input[type="button"]:focus
 #feed
 {
 	display: flex;
-	margin: 0 auto;
 	flex-direction: column;
-	max-width: 1180px;
+	max-width: 1000px;
+	min-width: 600px;
+	margin-left: max(300px, calc(50vw - 1000px/2) );
+	margin-right: 30px;
 	text-align: justify;
 }
 
