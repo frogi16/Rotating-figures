@@ -1,31 +1,161 @@
+:root {
+    --blueberry: #5285F4; 
+    --dark-red: #5C2018; 
+    --reg-red: #BC4639; 
+    --beige: #D4A59A; 
+    --creamy: #F3E0DC; 
+}
+
+* {
+    padding: 0;
+    margin: 0;
+}
+
+body
+{
+	background: rgb(82,143,245);
+	background: linear-gradient(135deg, rgba(82,143,245,1) 0%, rgba(49,122,244,1) 100%);
+}
+
+.clearfix:before,
+.clearfix:after {
+    content: " ";
+    display: table;
+}
+
+.clearfix:after {
+    clear: both;
+}
+
+.card #header, .card header
+{
+	display: flex;
+	position: relative;
+	z-index: 2;
+	top: 25px;
+	left: min(-10px, -2.5%);
+	min-height: 60px;
+	justify-content: center;
+	align-items: center;
+	border-style: solid;
+	background-color: var(--dark-red);
+	box-shadow: 5px 5px 5px #501410;
+}
+
+.card h2
+{
+	color: var(--creamy);
+}
+
+.card::after
+{
+	display: block;
+	z-index: -1;
+	content: "";
+	position: relative;
+	top: -25px;
+	left: max(10px, 2.5%);
+	min-height: 60px;
+	border-style: solid;
+	background-color: var(--reg-red);
+	box-shadow: 5px 5px 5px #381310;
+}
+
+.card:last-child::after
+{
+  margin-bottom: 70px;
+}
+
+article
+{
+	padding: 10px;
+	padding-top: 0;
+}
+
+article.card .content
+{
+	padding: 50px 30px 30px 30px;
+}
+
+.content
+{
+	height:auto;
+	z-index: 1;
+	background-color: var(--creamy);
+	border-style: solid;
+	position: relative;
+	box-shadow: 5px 5px 5px #3e2d2a;
+}
+
+#navbar
+{
+	position: fixed;
+	z-index: 5;
+	left: 40px;
+	width: 200px;
+}
+
+#navbarMenu
+{
+	padding: 40px 15px 25px 15px;
+}
+
+#navbarMenu button
+{
+	width: 100%;
+	padding: 2px 3px 2px 3px;
+	margin: 2px 4px 2px 4px;
+}
+
+button,
+input[type="button"]
+{
+	display:block;
+	background-color: var(--reg-red);
+	color: var(--creamy);
+	transition-duration: 0.4s;
+}
+
+button:focus,
+input[type="button"]:focus
+{
+	outline: none;
+	color: white !important;
+	-webkit-transform: scale(1.01);
+}
+
 #feed
 {
 	display: flex;
+	margin: 0 auto;
 	flex-direction: column;
-	max-width: 1080px;
+	max-width: 1180px;
 	text-align: justify;
 }
 
 #feed p
 {
-	margin-left: 50px;
+	margin: 20px 50px 20px 50px;
+	font-size: 1.15em;
 }
 
-article
+#controls table
 {
-	float: left;
-	display: block;
-	padding: 30px;
+	align: center;
+	margin: 0 auto;
+	margin-bottom: 20px;
 }
 
-input[type="button"]
-{
-	display:block;
-}
-
-.usePredefinedFigures input[type="button"]
+tr td input[type="button"]
 {
 	width: 100%;
+	padding: 1px 2px 2px 2px;
+	margin: 1px 4px 1px 4px;
+}
+
+tr td input[type="number"]
+{
+	margin-left: 5px;
 }
 
 .generateRegularPolygon
@@ -33,37 +163,17 @@ input[type="button"]
 	text-align: center;
 }
 
-.generateRegularPolygon input
-{
-    width: 100%;
-}
-
-#controls table
-{
-	margin-bottom: 20px;
-	margin-left: 50px;
-}
-
-#fieldComputationControls
-{
-	float: left;
-}
-
-#fieldComputationControls td
+.fieldComputationControls
 {
 	text-align: center;
+	padding: 1px;
 }
 
-#fieldComputationControls input[type="button"]
+.fieldComputationVal
 {
-    width: 100%;
-}
-
-#fieldComputationVal
-{
-	min-height: 80px;
-	float: left;
-	padding: 3px;
+	padding: 2px;
+	padding-left: 10px;
+	vertical-align: top;
 }
 
 #canvasDiv

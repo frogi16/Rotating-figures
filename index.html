@@ -6,86 +6,152 @@
 		<title>Proj 1</title>
 	</head>
 	<body>
+		<div id = "navbar" class = "card">
+			<div id = "header">
+				<h2>Menu</h2>
+			</div>
+			<script>
+				var firstElement = document.getElementById('header');
+				const offsetToFirstElem = -firstElement.getBoundingClientRect().top;
+				const headers = document.getElementsByTagName('header');
+				
+				function scrollToHeader(n)
+				{
+					const y = headers[n].getBoundingClientRect().top + window.pageYOffset + offsetToFirstElem;
+
+					window.scrollTo({top: y, behavior: 'smooth'});
+				}
+				
+				document.addEventListener("DOMContentLoaded", function(){					
+					for(var i = 0; i < headers.length; ++i)
+					{
+						const currI = i;
+						var button = document.createElement('button');
+						
+						button.addEventListener("click", function() {
+							scrollToHeader(currI);
+						});
+						
+						button.innerText = headers[i].innerText;
+						document.getElementById("navbarMenu").appendChild(button);
+					}
+				});
+			</script>
+			<div id = "navbarMenu" class="content">
+			</div>
+		</div>
 		<div id = "feed">
-			<article>
+			<article class = "card">
 				<header>
-					<h2>Rzut punktu przecięcia obrotowego promienia i wielokąta na oś Y</h2>
+					<h2>Animacja promienia i wynikowej funkcji</h2>
 				</header>
-				<div id = "controls">
-					<table>
-						<tr>
-							<td class="usePredefinedFigures"><input type="button" value="Trójkąt prostokątny" onclick="changeFigureToRightTriangle();" /></td>
-							<td class="generateRegularPolygon"><label>Ilość wierzchołków</label></td>
-							<td style="width:20px"></td>
-							<td><label>Szybkość obrotu promienia [deg/s]</label></td>
-							<td><input type = "number" name = "rayVelocity" id = "rayVelocity" value="36" /></td>
-						</tr>
-						<tr>
-							<td class="usePredefinedFigures"><input type="button" value="Strzałka" onclick="changeFigureToArrow();" /></td>
-							<td class="generateRegularPolygon"><input type = "number" name = "verticesNumber" id = "verticesNumber" /></td>
-							<td></td>
-							<td><label>Stały obrót figury</label></td>
-							<td><input type = "number" name = "angle" id = "angle" value="0" /></td>
-						</tr>
-						<tr>
-							<td class="usePredefinedFigures"><input type="button" value="Pik" onclick="changeFigureToSpear();" /></td>
-							<td class="generateRegularPolygon"><input type="button" value="Generuj n-kąt foremny" onclick="changeFigureToNewRegular();" /></td>
-							<td></td>
-							<td><label>Szybkość obrotu figury [deg/s]</label></td>
-							<td><input type = "number" name = "angleVelocity" id = "angleVelocity" value="0" /></td>
-						</tr>
-					</table>
-					<div id = "fieldComputationControls">
+				<div class="content clearfix">
+					<div id = "controls">
 						<table>
-							<tr><td>Zmierz pola pod krzywymi</td></tr>
-							<tr><td><input type="button" value="Okres obiegu promienia" onclick="resetFieldComputationRayPeriod();" /></td></tr>
-							<tr><td><input type="button" value="Wspólny okres promienia i figury" onclick="resetFieldComputationCommonPeriod();" /></td></tr>
+							<tr>
+								<td class="usePredefinedFigures"><input type="button" value="Trójkąt prostokątny" onclick="changeFigureToRightTriangle();" /></td>
+								<td class="generateRegularPolygon"><label>Ilość wierzchołków</label></td>
+								<td style="width:20px"></td>
+								<td><label>Szybkość obrotu promienia [deg/s]</label></td>
+								<td><input type = "number" name = "rayVelocity" id = "rayVelocity" value="36" /></td>
+							</tr>
+							<tr>
+								<td class="usePredefinedFigures"><input type="button" value="Strzałka" onclick="changeFigureToArrow();" /></td>
+								<td class="generateRegularPolygon"><input type = "number" name = "verticesNumber" id = "verticesNumber" /></td>
+								<td></td>
+								<td><label>Stały obrót figury</label></td>
+								<td><input type = "number" name = "angle" id = "angle" value="0" /></td>
+							</tr>
+							<tr>
+								<td class="usePredefinedFigures"><input type="button" value="Pik" onclick="changeFigureToSpear();" /></td>
+								<td class="generateRegularPolygon"><input type="button" value="Generuj n-kąt foremny" onclick="changeFigureToNewRegular();" /></td>
+								<td></td>
+								<td><label>Szybkość obrotu figury [deg/s]</label></td>
+								<td><input type = "number" name = "angleVelocity" id = "angleVelocity" value="0" /></td>
+							</tr>
+							
+							<tr style="height:20px">
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+							</tr>
+							
+							<tr>
+								<td class="fieldComputationControls">Zmierz pola pod krzywymi</td>
+								<td class="fieldComputationVal" rowspan="3"></td>
+								<td></td>
+								<td></td>
+								<td></td>
+							</tr>
+							<tr>
+								<td class="fieldComputationControls"><input type="button" value="Okres obiegu promienia" onclick="resetFieldComputationRayPeriod();" /></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+							</tr>
+							<tr>
+								<td class="fieldComputationControls"><input type="button" value="Wspólny okres promienia i figury" onclick="resetFieldComputationCommonPeriod();" /></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+							</tr>
 						</table>
 					</div>
-					<div id = "fieldComputationVal">
+					<div id="canvasDiv">
+						<canvas width = '400' height = '400' id = "canvas" ></canvas>
+						<canvas width = '600' height = '400' id = "canvasScroll" ></canvas>
 					</div>
-				</div>
-				<div id="canvasDiv">
-					<canvas width = '400' height = '400' id = "canvas" ></canvas>
-					<canvas width = '600' height = '400' id = "canvasScroll" ></canvas>
 				</div>
 				<script src="index.js"></script>
 			</article>
-			<article>
+			<article class = "card">
 				<header>
 					<h2>Wielokąty foremne a sinus</h2>
 				</header>
+				<div class="content">
 					<p>
-						Rzut obracającego się promienia na oś Y w połączeniu z translacją tworzy wykresy funkcji okresowych. Szczególny przypadek występuje gdy promień obraca się wewnątrz okręgu, wtedy mamy do czynienia ze zwykłą sinusoidą (w przypadku rzut na poziomą oś byłaby to cosinusoida).
+						Rzut obracającego się promienia na oś Y w połączeniu z translacją tworzy wykresy funkcji okresowych. Szczególny przypadek występuje gdy promień obraca się wewnątrz koła jednostkowego, wtedy mamy do czynienia ze zwykłą sinusoidą (w przypadku rzutu na poziomą oś byłaby to cosinusoida).
 					</p>
 					<p>
 						Dzięki temu o funkcji rysowanej w wyniku obrotu promienia wewnątrz figury, na której można opisać okrąg, można myśleć w kategorii interpolacji sinusa. Węzły interpolacji to punkty, gdzie figura pod względem rzutu na oś Y jest identyczna z okręgiem, a ich położenie określa stały obrót figury. Jego zmiana wpływa na wygląd wyjściowej funkcji i dokładność, z jaką odwzorowuje sinus.
 					</p>
 					<p>
-						Im więcej wierzchołków ma figura, tym więcej węzłów, które wymuszają wygląd podobny do koła. Wraz ze zbieganiem ku nieskończoności różnice między polami pod krzywymi się zacierają.
+						Im więcej wierzchołków ma figura, tym więcej węzłów, które wymuszają wygląd podobny do koła. Wraz ze zbieganiem ku nieskończoności różnice krzywymi się zacierają.
 					</p>
+				</div>
 			</article>
-			<article>
+			<article class = "card">
 				<header>
 					<h2>Obrót figury</h2>
 				</header>
+				<div class="content">
 					<p>
-						Oprócz obrotu promienia można wprowadzić również ruch obrotowy samej figury, na którą się go rzutuje. Wprowadza to dodatkowe zaburzenia do wykresu, a ciekawe efekty można uzyskać z pewnymi specyficznymi wartościami szybkości obrotu.
+						Oprócz obrotu promienia można wprowadzić również ruch obrotowy samej figury, na którą się go rzuca. Wprowadza to dodatkowe zaburzenia do wykresu, a ciekawe efekty można uzyskać z pewnymi specyficznymi wartościami szybkości obrotu.
 					</p>
 					<p>
 						Stosunek szybkości obrotu figury i promienia decyduje o kształcie krzywej i wspólnym okresie, który można wyliczyć z NWW i NWD. Gdy szybkości są takie same wydaje się, że różnica między sinusem a funkcją interpolującą powinna być stała, ale rzut odległości między punktami na obu figurach jest sinusoidalnie zmienny i powoduje pewne odchyły. Ustają one całkowicie, gdy szybkości zsynchronizuje się dokładnie w momencie, kiedy promień wskazuje na węzeł interpolacyjny - brak wtedy jakichkolwiek różnic między punktami, które mogłyby się zmieniać.
 					</p>
+					<p>
+						Obrót figury znacznie szybszy niż promienia powoduje szybkie zmiany wartości funkcji, podczas gdy promień pada na coraz to inne boki figury. Dzięki temu obraz fal odpowiadających różnym bokom pojawia się naraz. Stąd np. przy odpowiednich szybkościach obrotu trójkąta doliczyć się można trzech różnych sinusów. Bardzo szybki obrót oczywiście nie jest symulowany nawet w przybliżeniu dokładnie, bo brak odpowiedniej płynności symulacji i rozdzielczości ekranu.
+					</p>
+				</div>
 			</article>
-			<article>
+			<article class = "card">
 				<header>
 					<h2>Pole pod sinusem</h2>
 				</header>
+				<div class="content">
 					<p>
 						Okres uzyskanych funkcji wygodnie powiązać z kołem i przedstawić w postaci 2π. Na przestrzeni ćwiartki tego czasu pole pod krzywą sumuje się do 1, więc w całym okresie całka z wartości bezwzględnej funkcji powinna być równa 4.
 					</p>
 					<p>
 						W rzeczywistości obserwuje się niewielkie odchylenia nieodzowne przy obliczeniach numerycznych. Zastosowany algorytm nie jest zbyt skomplikowany  i używa prostego całkowania metodą prostokątów, co dodatkowo przyczynia się do błędu. 
 					</p>
+				</div>
 			</article>
 		</div>
 	</body>

@@ -272,17 +272,17 @@ function updateFieldsAndError()
 	
 	figureField  += Math.abs(yPrev -y0)/r * dt * deg2rad(getRayAngularVelocity());
 	
-	var infoLines = ["czas: " + convertToString(t - errorStart),
+	var infoLines = ["czas: " + convertToString(t - errorStart) + " s",
 					 "pole pod krzywą: " + convertToString(figureField)];
 	
-	document.getElementById('fieldComputationVal').innerText = infoLines[0] + "\n" + infoLines[1];
+	document.getElementsByClassName('fieldComputationVal')[0].innerText = infoLines[0] + "\n" + infoLines[1];
 	
 	if(isRegularFigure)
 	{
 		sineField += Math.abs(yPrevS-y0)/r * dt * deg2rad(getRayAngularVelocity());
 		infoLines.push("pole pod sinusem: " + convertToString(sineField));
 		infoLines.push("błąd: " + convertToString( Math.abs(figureField - sineField) ));
-		document.getElementById('fieldComputationVal').innerText += "\n" + infoLines[2]+ "\n" + infoLines[3];
+		document.getElementsByClassName('fieldComputationVal')[0].innerText += "\n" + infoLines[2]+ "\n" + infoLines[3];
 	}
 
 	if(t - errorStart >= measureErrorFor)
